@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#capture_button").click(function(){
+	var ts = new Date().getTime();
+        $("#div1").html("<img src='/capture?timestamp=" + ts + "'/>");
+    });
+    $("#config_button").click(function(event) {
+        var formData = $("#config_form").serialize();
+        $.get("/submit?" + formData, function(data, status) {
+            alert(data + "\nStatus: " + status);
+        });
+        event.preventDefault();
+    });
+});
+</script>
+</head>
+
+
+<body>
+
+<h2>[ Camera Settings ]</h2>
+
+<form id="config_form">
+  <br/>
+  
+  Resolution:<br/>
+  <input type="radio" name="resolution" value="1920x1080" checked> 1920x1080<br>
+  <input type="radio" name="resolution" value="1280x720"> 1280x720<br>
+  <input type="radio" name="resolution" value="1024x768"> 1024x768<br>
+  <input type="radio" name="resolution" value="640x480"> 640x480<br> <br>
+
+  Brightness : <input type="text" name="brightness"> [Please Input 0~100]<br/>
+  annotate : <input type="text" name="annotate"> <br/><br/>
+  
+  
+  <button id="config_button">Save</button>
+</form>
+
+<hr>
+
+<button id="capture_button">Capture Test</button>
+
+<div id="div1"><h2>Capture Image</h2></div>
+
+</body>
+</html>
