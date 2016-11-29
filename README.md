@@ -1,2 +1,2 @@
 # EmbededOS
-Please Edit <a href=""> address of HTML Files to RaspberryPI address
+Please Edit address of HTML Files to RaspberryPI address
